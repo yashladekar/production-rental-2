@@ -7,6 +7,7 @@ export const env = createEnv({
         DATABASE_URL: z.url(),
         LOGIN_URL: z.url(),
         AUTH_SESSION_COOKIE_NAME: z.string().min(1).default("JSESSIONID"),
+        AUTH_VALIDATE_URL: z.url(),
     },
     client: {
         NEXT_PUBLIC_APP_URL: z.url(),
@@ -18,6 +19,7 @@ export const env = createEnv({
         DATABASE_URL: process.env.DATABASE_URL,
         LOGIN_URL: process.env.LOGIN_URL,
         AUTH_SESSION_COOKIE_NAME: process.env.AUTH_SESSION_COOKIE_NAME,
+        AUTH_VALIDATE_URL: process.env.AUTH_VALIDATE_URL,
         NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
         NEXT_PUBLIC_LOGIN_URL: process.env.NEXT_PUBLIC_LOGIN_URL,
         NEXT_PUBLIC_APPLICATION_NAME: process.env.NEXT_PUBLIC_APPLICATION_NAME,

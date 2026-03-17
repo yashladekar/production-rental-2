@@ -13,7 +13,35 @@ function getClientIp(req: NextRequest): string | undefined {
     return req.headers.get("x-real-ip") ?? undefined;
 }
 
-export function proxy(req: NextRequest) {
+async function hasValidSession(req: NextRequest) {
+    const sessionCookieName = getSessionCookieName();
+    const sessionCookie = req.cookies.get(sessionCookieName);
+
+    if (!sessionCookie?.value) {
+        return false;
+    }
+
+    const validateUrl = process.env.AUTH_VALIDATE_URL;
+    if (!validateUrl) {
+        return false;
+    }
+
+    try {
+        const response = await fetch(validateUrl, {
+            method: "GET",
+            headers: {
+                Cookie: `${sessionCookieName}=${sessionCookie.value}`,
+            },
+            cache: "no-store",
+        });
+
+        return response.ok;
+    } catch {
+        return false;
+    }
+}
+
+export async function proxy(req: NextRequest) {
     const pathname = req.nextUrl.pathname;
     if (/\.[^/]+$/.test(pathname)) {
         return NextResponse.next();
@@ -37,9 +65,9 @@ export function proxy(req: NextRequest) {
         return NextResponse.next();
     }
 
-    const jsession = req.cookies.get(getSessionCookieName());
+    const authenticated = await hasValidSession(req);
 
-    if (!jsession) {
+    if (!authenticated) {
         auditLog("ACCESS_DENIED", { ip: getClientIp(req), path: pathname })
 
         if (pathname.startsWith("/api")) {
