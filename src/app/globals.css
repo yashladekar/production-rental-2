@@ -1,42 +1,602 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif !important;
+}
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.bold61 {
+  font-size: 3.812rem !important;
+  font-weight: bold !important;
+}
+
+.bold49 {
+  font-size: 3.062rem !important;
+  font-weight: bold !important;
+}
+
+.bold39 {
+  font-size: 2.438rem !important;
+  font-weight: bold !important;
+}
+
+.bold31 {
+  font-size: 1.938rem !important;
+  font-weight: bold !important;
+}
+
+.bold25 {
+  font-size: 1.562rem !important;
+  font-weight: bold !important;
+}
+.bold20 {
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+}
+
+.bold16 {
+  font-size: 1rem !important;
+  font-weight: bold !important;
+}
+
+.bold13 {
+  font-size: 0.812rem !important;
+  font-weight: bold !important;
+}
+
+.bold10 {
+  font-size: 0.625rem !important;
+  font-weight: bold !important;
+}
+
+.regular61 {
+  font-size: 3.812rem !important;
+  font-weight: normal !important;
+}
+
+.regular49 {
+  font-size: 3.062rem !important;
+  font-weight: normal !important;
+}
+
+.regular39 {
+  font-size: 2.438rem !important;
+  font-weight: normal !important;
+}
+
+.regular31 {
+  font-size: 1.938rem !important;
+  font-weight: normal !important;
+}
+
+.regular25 {
+  font-size: 1.562rem !important;
+  font-weight: normal !important;
+}
+.regular20 {
+  font-size: 1.25rem !important;
+  font-weight: normal !important;
+}
+
+.regular16 {
+  font-size: 1rem !important;
+  font-weight: normal !important;
+}
+
+.regular13 {
+  font-size: 0.812rem !important;
+  font-weight: normal !important;
+}
+
+.regular10 {
+  font-size: 0.625rem !important;
+  font-weight: normal !important;
+}
+
+/*Gradient*/
+.light-mode-gradient {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(246, 246, 246, 0) 0%,
+      rgb(246, 246, 246, 1) 38%
+    ),
+    linear-gradient(
+      90deg,
+      rgb(158, 208, 158) 0%,
+      rgb(163, 234, 230) 50%,
+      rgba(34, 36, 192, 0.3) 100%
+    ) !important;
+  background-color: #f6f6f6 !important;
+}
+
+/*Gradient for sidebar*/
+.gradientDark {
+  background-image: linear-gradient(
+    to right,
+    rgb(9, 81, 17) 0%,
+    rgb(12, 100, 106) 50%,
+    rgb(34, 36, 192) 100%
+  ) !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.gradientLight {
+  background-image: linear-gradient(
+    to right,
+    rgb(158, 208, 158) 0%,
+    rgb(163, 234, 230) 50%,
+    rgb(178, 203, 255) 100%
+  ) !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.dark-mode-gradient {
+  background:
+    linear-gradient(180deg, rgba(47, 47, 47, 0) 0%, rgba(47, 47, 47, 1) 38%),
+    linear-gradient(
+      90deg,
+      rgba(9, 81, 17, 0.3) 0%,
+      rgba(12, 100, 106, 0.3) 50%,
+      rgba(34, 36, 192, 0.3) 100%
+    ) !important;
+  background-color: #2f2f2f !important;
+}
+
+/* .horizontal-gradient {
+  background:
+    linear-gradient(180deg, rgba(47,47,47,0) 0%, rgba(47,47,47,1) 38%),
+    linear-gradient(90deg, rgba(9,81,17,0.3) 0%, rgba(12,100,106,0.3) 50%, rgba(34,36,192,0.3) 100%);
+  background-color:  #2f2f2f */
+
+/* Black */
+.black-50 {
+  background-color: #f6f6f6 !important;
+}
+.blackText-50 {
+  color: #f6f6f6 !important;
+}
+
+.black-100 {
+  background-color: #e7e7e7 !important;
+}
+.blackText-100 {
+  color: #e7e7e7 !important;
+}
+
+.black-200 {
+  background-color: #d1d1d1 !important;
+}
+.blackText-200 {
+  color: #d1d1d1 !important;
+}
+
+.black-300 {
+  background-color: #b0b0b0 !important;
+}
+.blackText-300 {
+  color: #b0b0b0 !important;
+}
+.black-400 {
+  background-color: #888888 !important;
+}
+.blackText-400 {
+  color: #888888 !important;
+}
+.black-500 {
+  background-color: #6d6d6d !important;
+}
+.blackText-500 {
+  color: #6d6d6d !important;
+}
+.black-600 {
+  background-color: #5d5d5d !important;
+}
+.blackText-600 {
+  color: #5d5d5d !important;
+}
+.black-700 {
+  background-color: #4f4141 !important;
+}
+.blackText-700 {
+  color: #4f4141 !important;
+}
+
+.black-800 {
+  background-color: #454545 !important;
+}
+.blackText-800 {
+  color: #454545 !important;
+}
+.black-900 {
+  background-color: #3d303d !important;
+}
+.blackText-900 {
+  color: #3d303d !important;
+}
+.black-950 {
+  background-color: #262626 !important;
+}
+.blackText-950 {
+  color: #262626 !important;
+}
+
+/* Grey */
+.grey-50 {
+  background-color: #f6f6f6 !important;
+}
+.greyText-50 {
+  color: #f6f6f6 !important;
+}
+.grey-100 {
+  background-color: #e7e7e7 !important;
+}
+.greyText-100 {
+  color: #e7e7e7 !important;
+}
+.grey-200 {
+  background-color: #d1d1d1 !important;
+}
+.greyText-200 {
+  color: #d1d1d1 !important;
+}
+.grey-300 {
+  background-color: #b0b0b0 !important;
+}
+.greyText-300 {
+  color: #b0b0b0 !important;
+}
+.grey-400 {
+  background-color: #888888 !important;
+}
+.greyText-400 {
+  color: #888888 !important;
+}
+.grey-500 {
+  background-color: #6d6d6d !important;
+}
+.greyText-500 {
+  color: #6d6d6d !important;
+}
+.grey-600 {
+  background-color: #5d5d5d !important;
+}
+.greyText-600 {
+  color: #5d5d5d !important;
+}
+.grey-700 {
+  background-color: #4f4141 !important;
+}
+.greyText-700 {
+  color: #4f4141 !important;
+}
+.grey-800 {
+  background-color: #454545 !important;
+}
+.greyText-800 {
+  color: #454545 !important;
+}
+.grey-900 {
+  background-color: #3d303d !important;
+}
+.greyText-900 {
+  color: #3d303d !important;
+}
+.grey-950 {
+  background-color: #2f2f2f !important;
+}
+.greyText-950 {
+  color: #2f2f2f !important;
+}
+
+/*Primary*/
+
+/*MCP Primary*/
+.mcpPrimary-50 {
+  background-color: #eef9ff !important;
+}
+.mcpPrimaryText-50 {
+  color: #eef9ff !important;
+}
+.mcpPrimary-100 {
+  background-color: #d4f0ff !important;
+}
+.mcpPrimaryText-100 {
+  color: #d4f0ff !important;
+}
+.mcpPrimary-200 {
+  background-color: #a9e1ff !important;
+}
+.mcpPrimaryText-200 {
+  color: #a9e1ff !important;
+}
+.mcpPrimary-300 {
+  background-color: #7fd2ff !important;
+}
+.mcpPrimaryText-300 {
+  color: #7fd2ff !important;
+}
+.mcpPrimary-400 {
+  background-color: #5ac0ff !important;
+}
+.mcpPrimaryText-400 {
+  color: #5ac0ff !important;
+}
+.mcpPrimary-500 {
+  background-color: #34a2fd !important;
+}
+.mcpPrimaryText-500 {
+  color: #34a2fd !important;
+}
+.mcpPrimary-600 {
+  background-color: #166ddf !important;
+}
+.mcpPrimaryText-600 {
+  color: #166ddf !important;
+}
+.mcpPrimary-700 {
+  background-color: #166ddf !important;
+}
+.mcpPrimaryText-700 {
+  color: #166ddf !important;
+}
+.mcpPrimary-800 {
+  background-color: #1a5cbe !important;
+}
+.mcpPrimaryText-800 {
+  color: #1a5cbe !important;
+}
+.mcpPrimary-900 {
+  background-color: #1a4b8e !important;
+}
+.mcpPrimaryText-900 {
+  color: #1a4b8e !important;
+}
+.mcpPrimary-950 {
+  background-color: #152f56 !important;
+}
+.mcpPrimaryText-950 {
+  color: #152f56 !important;
+}
+
+/*Rental Primary*/
+.rentalPrimary-50 {
+  background-color: #f2fbf2 !important;
+}
+.rentalPrimaryText-50 {
+  color: #f2fbf2 !important;
+}
+
+.rentalPrimary-100 {
+  background-color: #e2f6e2 !important;
+}
+.rentalPrimaryText-100 {
+  color: #e2f6e2 !important;
+}
+.rentalPrimary-200 {
+  background-color: #c7ecc6 !important;
+}
+.rentalPrimaryText-200 {
+  color: #c7ecc6 !important;
+}
+.rentalPrimary-300 {
+  background-color: #9adc99 !important;
+}
+.rentalPrimaryText-300 {
+  color: #9adc99 !important;
+}
+.rentalPrimary-400 {
+  background-color: #64c464 !important;
+}
+.rentalPrimaryText-400 {
+  color: #64c464 !important;
+}
+.rentalPrimary-500 {
+  background-color: #3a9b3a !important;
+}
+.rentalPrimaryText-500 {
+  color: #3a9b3a !important;
+}
+.rentalPrimary-600 {
+  background-color: #2f8a30 !important;
+}
+.rentalPrimaryText-600 {
+  color: #2f8a30 !important;
+}
+.rentalPrimary-700 {
+  background-color: #286d29 !important;
+}
+.rentalPrimaryText-700 {
+  color: #286d29 !important;
+}
+.rentalPrimary-800 {
+  background-color: #245724 !important;
+}
+.rentalPrimaryText-800 {
+  color: #245724 !important;
+}
+
+.rentalPrimary-900 {
+  background-color: #1f4820 !important;
+}
+.rentalPrimaryText-900 {
+  color: #1f4820 !important;
+}
+.rentalPrimary-950 {
+  background-color: #0c270d !important;
+}
+.rentalPrimaryText-950 {
+  color: #0c270d !important;
+}
+
+/*Error*/
+.error-50 {
+  background-color: #ffe6e6 !important;
+}
+.errorText-50 {
+  color: #ffe6e6 !important;
+}
+.error-100 {
+  background-color: #ffdada !important;
+}
+.errorText-100 {
+  color: #ffdada !important;
+}
+.error-200 {
+  background-color: #ffbbbb !important;
+}
+.errorText-200 {
+  color: #ffbbbb !important;
+}
+.error-300 {
+  background-color: #ff8b8b !important;
+}
+.errorText-300 {
+  color: #ff8b8b !important;
+}
+.error-400 {
+  background-color: #ff4949 !important;
+}
+.errorText-400 {
+  color: #ff4949 !important;
+}
+
+.error-500 {
+  background-color: #ff1111 !important;
+}
+.errorText-500 {
+  color: #ff1111 !important;
+}
+.error-600 {
+  background-color: #ff0000 !important;
+}
+.errorText-600 {
+  color: #ff0000 !important;
+}
+.error-700 {
+  background-color: #e70000 !important;
+}
+.errorText-700 {
+  color: #e70000 !important;
+}
+.error-800 {
+  background-color: #be0000 !important;
+}
+.errorText-800 {
+  color: #be0000 !important;
+}
+.error-900 {
+  background-color: #8b0000 !important;
+}
+.errorText-900 {
+  color: #8b0000 !important;
+}
+.error-950 {
+  background-color: #560000 !important;
+}
+.errorText-950 {
+  color: #560000 !important;
+}
+
+/*Warning*/
+.warning-50 {
+  background-color: #ffffea !important;
+}
+.warningText-50 {
+  color: #ffffea !important;
+}
+.warning-100 {
+  background-color: #fffbc5 !important;
+}
+.warningText-100 {
+  color: #fffbc5 !important;
+}
+.warning-200 {
+  background-color: #fff885 !important;
+}
+.warningText-200 {
+  color: #fff885 !important;
+}
+.warning-300 {
+  background-color: #ffed46 !important;
+}
+.warningText-300 {
+  color: #ffed46 !important;
+}
+.warning-400 {
+  background-color: #ffdf1b !important;
+}
+.warningText-400 {
+  color: #ffdf1b !important;
+}
+.warning-500 {
+  background-color: #ffbf00 !important;
+}
+.warningText-500 {
+  color: #ffbf00 !important;
+}
+.warning-600 {
+  background-color: #e29300 !important;
+}
+.warningText-600 {
+  color: #e29300 !important;
+}
+.warning-700 {
+  background-color: #bb6802 !important;
+}
+.warningText-700 {
+  color: #bb6802 !important;
+}
+.warning-800 {
+  background-color: #985008 !important;
+}
+.warningText-800 {
+  color: #985008 !important;
+}
+.warning-900 {
+  background-color: #7c420b !important;
+}
+.warningText-900 {
+  color: #7c420b !important;
+}
+.warning-950 {
+  background-color: #482200 !important;
+}
+.warningText-950 {
+  color: #482200 !important;
+}
+
+.no-underline {
+  text-decoration: none !important;
+}
+
+.css-s1h6qp-MuiButtonBase-root-MuiCheckbox-root {
+  padding: 0 10px !important;
+}
+
+.css-130vtzj-MuiFormControlLabel-root {
+  align-items: flex-start !important;
+}
+
+/* table scroll bar height reset */
+.table-scrollbar::-webkit-scrollbar {
+  height: 8px;
 }
