@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import Image from "next/image";
 import "./style.css";
-import UnfoldMoreOutlinedIcon from "@mui/icons-material/UnfoldMoreOutlined";
-
-import { useRouter } from "next/navigation";
 const logo = "/JLR_logo_2023.png";
 
 // Styled components
@@ -16,15 +12,7 @@ const Container = styled(Box)(({ }) => ({
     flexDirection: "column",
 }));
 
-const HeaderWrapper = styled(Box)(({ theme }) => ({
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: theme.spacing(1.25, 2.5),
-    borderBottom: `1px solid ${theme.palette.divider}`,
-}));
-
-const MainSection = styled(Box)(({ theme }) => ({
+const MainSection = styled(Box)(() => ({
     display: "flex",
     flex: 1,
 }));
@@ -40,7 +28,7 @@ const TopSection = styled(Box)(({ theme }) => ({
         "linear-gradient(90deg, rgba(158, 208, 158, 0.3) 0%, rgba(163, 234, 230, 0.5) 50%)",
 }));
 
-const BottomSection = styled(Box)(({ theme }) => ({
+const BottomSection = styled(Box)(() => ({
     flex: "2 1 66.67%",
     display: "flex",
     flexDirection: "column",
@@ -55,15 +43,15 @@ const LogoContainer = styled(Box)(({ theme }) => ({
 }));
 
 export default function Login() {
-    const router = useRouter();
-    const [error, setError] = React.useState(null);
-    async function handleLogin() {
-        try {
-            // Redirect to protected page
-            router.replace("/dashboard");
-        } catch (err) {
-            console.error(err);
+    function handleLogin() {
+        const loginUrl = process.env.NEXT_PUBLIC_LOGIN_URL;
+
+        if (!loginUrl) {
+            console.error("Missing NEXT_PUBLIC_LOGIN_URL");
+            return;
         }
+
+        window.location.href = loginUrl;
     }
 
     return (
@@ -96,28 +84,26 @@ export default function Login() {
                         >
                             FleetHub
                         </Typography>
-                        <Link>
-                            <Button
-                                variant="outlined"
-                                onClick={handleLogin}
-                                sx={{
-                                    boxShadow: "#00000040",
-                                    width: "268px",
-                                    height: "39px",
-                                    background: "white",
-                                    padding: "10px",
-                                    borderRadius: "5px",
-                                    border: "1px solid #4F4F4F"// Make JLR SSO Login button text bold
-                                }}
+                        <Button
+                            variant="outlined"
+                            onClick={handleLogin}
+                            sx={{
+                                boxShadow: "#00000040",
+                                width: "268px",
+                                height: "39px",
+                                background: "white",
+                                padding: "10px",
+                                borderRadius: "5px",
+                                border: "1px solid #4F4F4F"
+                            }}
+                        >
+                            <Typography
+                                variant="h6"
+                                sx={{ fontWeight: 700, fontSize: "16px", color: "#5D5D5D" }}
                             >
-                                <Typography
-                                    variant="h6"
-                                    sx={{ fontWeight: 700, fontSize: "16px", color: "#5D5D5D" }}
-                                >
-                                    JLR SSO Login
-                                </Typography>
-                            </Button>
-                        </Link>
+                                JLR SSO Login
+                            </Typography>
+                        </Button>
                     </BottomSection>
                 </MainSection>
             </Container>

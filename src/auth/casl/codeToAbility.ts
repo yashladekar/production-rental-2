@@ -1,5 +1,5 @@
 import { AbilityBuilder, createMongoAbility } from "@casl/ability";
-import type { AppAbility, Actions, Subjects } from "./types";
+import type { AppAbility, Actions } from "./types";
 
 const VERB_MAP: Record<string, Actions> = {
     GET: "read",

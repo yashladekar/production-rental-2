@@ -1,4 +1,3 @@
-import { error } from "console"
 import { createChildLogger } from "./factories/logger"
 
 const logger = createChildLogger({
@@ -12,5 +11,5 @@ async function register() {
 register().then(() => {
     logger.info("completed edge instrumentation setup")
 }).catch((error) => {
-    logger.error('Error while running edge runtime startup tasks')
+    logger.error({ error }, 'Error while running edge runtime startup tasks')
 })

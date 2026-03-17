@@ -29,11 +29,7 @@ function getInitialMode(): PaletteMode {
 }
 
 export default function ThemeProviderClient({ children }: { children: React.ReactNode }) {
-    const [mode, setMode] = useState<PaletteMode>("light");
-
-    useEffect(() => {
-        setMode(getInitialMode());
-    }, []);
+    const [mode, setMode] = useState<PaletteMode>(getInitialMode);
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", mode);

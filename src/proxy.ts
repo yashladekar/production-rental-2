@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 import { auditLog } from "./audit/audit-logger";
+import { getSessionCookieName } from "./auth/session";
 
 function getClientIp(req: NextRequest): string | undefined {
     const xForwardedFor = req.headers.get("x-forwarded-for");
@@ -28,15 +29,15 @@ export function proxy(req: NextRequest) {
         "/public",
     ];
 
-    const isPublicRoute = publicPaths.some((path) => {
-        pathname.startsWith(path);
-    })
+    const isPublicRoute = publicPaths.some(
+        (path) => pathname === path || pathname.startsWith(`${path}/`)
+    );
 
     if (isPublicRoute) {
         return NextResponse.next();
     }
 
-    const jsession = req.cookies.get("JSESSIONID")
+    const jsession = req.cookies.get(getSessionCookieName());
 
     if (!jsession) {
         auditLog("ACCESS_DENIED", { ip: getClientIp(req), path: pathname })
