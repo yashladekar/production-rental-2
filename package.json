@@ -5,9 +5,12 @@
   "scripts": {
     "build:prod": "env-cmd -f .env.prod next build",
     "start:prod": "env-cmd -f .env.prod next start",
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8081",
+    "start:dev": "next start -p 8080",
+    "start:qa": "next start -p 8080",
+    "start:prod-local": "next start -p 8080",
     "lint": "eslint"
   },
   "dependencies": {

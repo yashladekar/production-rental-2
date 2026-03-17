@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 import { auditLog } from "./audit/audit-logger";
-import { getSessionCookieName } from "./auth/session";
+import { getJwtCookieName, getSessionCookieName, hasUsableJwtToken } from "./auth/session";
 
 function getClientIp(req: NextRequest): string | undefined {
     const xForwardedFor = req.headers.get("x-forwarded-for");
@@ -14,6 +14,11 @@ function getClientIp(req: NextRequest): string | undefined {
 }
 
 async function hasValidSession(req: NextRequest) {
+    const jwtCookie = req.cookies.get(getJwtCookieName());
+    if (hasUsableJwtToken(jwtCookie?.value)) {
+        return true;
+    }
+
     const sessionCookieName = getSessionCookieName();
     const sessionCookie = req.cookies.get(sessionCookieName);
 
