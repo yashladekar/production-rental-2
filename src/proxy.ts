@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 
 import { auditLog } from "./audit/audit-logger";
 import { getJwtCookieName, getSessionCookieName, hasUsableJwtToken } from "./auth/session";
@@ -14,13 +14,18 @@ function getClientIp(req: NextRequest): string | undefined {
 }
 
 async function hasValidSession(req: NextRequest) {
+
     const jwtCookie = req.cookies.get(getJwtCookieName());
+    console.log("JWT Cookie found:", !!jwtCookie); // Debug log
+
+
     if (hasUsableJwtToken(jwtCookie?.value)) {
         return true;
     }
 
     const sessionCookieName = getSessionCookieName();
     const sessionCookie = req.cookies.get(sessionCookieName);
+    console.log("Session Cookie found:", !!sessionCookie); // Debug log
 
     if (!sessionCookie?.value) {
         return false;
@@ -72,6 +77,8 @@ export async function proxy(req: NextRequest) {
 
     const authenticated = await hasValidSession(req);
 
+
+
     if (!authenticated) {
         auditLog("ACCESS_DENIED", { ip: getClientIp(req), path: pathname })
 
@@ -81,6 +88,10 @@ export async function proxy(req: NextRequest) {
 
         return NextResponse.redirect(new URL("/login", req.url));
     }
+
+    // if (authenticated) {
+    //     return NextResponse.redirect(new URL('/dashboard', req.url))
+    // }
 
     return NextResponse.next();
 }
