@@ -1,8 +1,37 @@
-import { redirect } from "next/navigation";
-import { Box, Typography } from "@mui/material";
+// import { redirect } from "next/navigation";
+// import { Box, Typography } from "@mui/material";
 
+// import { hasActiveSession } from "@/auth/session";
+// import LogoutButton from "@/components/logout-button";
+// import MainContainer from "@/components/molecules/main-container";
+// import AppHeader from "@/components/organism/app-header";
+// import Sidebar from "@/components/organism/sidebar";
+// export default async function RootLayout({
+//     children,
+// }: Readonly<{
+//     children: React.ReactNode;
+// }>) {
+//     const authenticated = await hasActiveSession();
+
+//     if (!authenticated) {
+//         redirect("/login");
+//     }
+
+//     return (
+//         <Box sx={{ minHeight: "100vh", bgcolor: "background.default", color: "text.primary" }}>
+//             <AppHeader open={open} onDrawerOpen={() => setOpen(true)} />
+//             <Sidebar open={open} onDrawerClose={() => setOpen(false)} />
+//             <MainContainer>
+//                 {children}
+//             </MainContainer>
+//             {/* </Box> */}
+//         </Box>
+//     );
+// }
+
+import { redirect } from "next/navigation";
 import { hasActiveSession } from "@/auth/session";
-import LogoutButton from "@/components/logout-button";
+import ProtectedShell from "@/components/organism/protected-shell";
 
 export default async function RootLayout({
     children,
@@ -15,27 +44,5 @@ export default async function RootLayout({
         redirect("/login");
     }
 
-    return (
-        <Box sx={{ minHeight: "100vh", bgcolor: "background.default", color: "text.primary" }}>
-            <Box
-                sx={{
-                    px: 3,
-                    py: 2,
-                    borderBottom: 1,
-                    borderColor: "divider",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                }}
-            >
-                <Typography variant="h6" fontWeight={700}>
-                    {process.env.NEXT_PUBLIC_APPLICATION_NAME}
-                </Typography>
-                <LogoutButton />
-            </Box>
-            <Box component="main" sx={{ p: 3 }}>
-                {children}
-            </Box>
-        </Box>
-    );
+    return <ProtectedShell>{children}</ProtectedShell>;
 }

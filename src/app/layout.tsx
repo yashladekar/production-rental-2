@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import ThemeProviderClient from "@/components/theme-provider-client";
-import ThemeToggle from "@/components/theme-toggle";
+// import ThemeToggle from "@/components/theme-toggle";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,9 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        {process.env.NODE_ENV === "development" && (
+          <script src="https://unpkg.com/react-scan/dist/auto.global.js" crossOrigin="anonymous" />
+        )}
         <AppRouterCacheProvider>
           <ThemeProviderClient>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             {children}
           </ThemeProviderClient>
         </AppRouterCacheProvider>
